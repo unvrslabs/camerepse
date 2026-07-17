@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Es Vedra & Via Romagna — Design System
+   "Adriatico elegante"
+   Petrolio mare #0d3b45 · Sabbia #e9ddc7 · Oro #c79a4b
+   ============================================================ */
+
+@theme {
+  /* Petrolio / mare Adriatico */
+  --color-sea-50: #eef4f5;
+  --color-sea-100: #d3e3e5;
+  --color-sea-200: #a3c4c8;
+  --color-sea-300: #6b9da3;
+  --color-sea-400: #3f757c;
+  --color-sea-500: #1d5560;
+  --color-sea-600: #124450;
+  --color-sea-700: #0d3b45;
+  --color-sea-800: #0a2c34;
+  --color-sea-900: #071e24;
+  --color-sea-950: #041318;
+
+  /* Sabbia / crema */
+  --color-sand-100: #faf6ef;
+  --color-sand-200: #f3ece0;
+  --color-sand-300: #e9ddc7;
+  --color-sand-400: #dcc9a8;
+  --color-sand-500: #c9ad82;
+
+  /* Oro / accento caldo */
+  --color-gold-300: #e0c48a;
+  --color-gold-400: #d0ab63;
+  --color-gold-500: #c79a4b;
+  --color-gold-600: #a9803a;
+
+  /* WhatsApp */
+  --color-wa: #25d366;
+
+  --color-ink: #061217;
+  --color-cream: #f7f3ea;
+
+  /* Semantic */
+  --color-background: #f7f3ea;
+  --color-foreground: #0a2c34;
+
+  /* Fonts */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+
+  /* Easing */
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis gestisce lo smooth scroll */
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold-500);
+  color: var(--color-ink);
+}
+
+/* Titoli display */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
+
+/* Titolo con gradiente sabbia/oro su fondo scuro */
+.title-grad {
+  background: linear-gradient(104deg, #f7f3ea 0%, #e9ddc7 45%, #d0ab63 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+/* Titolo con gradiente petrolio su fondo chiaro */
+.title-grad-dark {
+  background: linear-gradient(104deg, #0d3b45 0%, #1d5560 55%, #3f757c 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Utilities */
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+.container-x { padding-left: 1.5rem; padding-right: 1.5rem; }
+@media (min-width: 768px) { .container-x { padding-left: 2.5rem; padding-right: 2.5rem; } }
+
+/* Mesh gradient — profondità marina */
+.mesh-sea {
+  background-color: #071e24;
+  background-image:
+    radial-gradient(at 12% 18%, rgba(29, 85, 96, 0.55) 0px, transparent 55%),
+    radial-gradient(at 88% 8%, rgba(199, 154, 75, 0.14) 0px, transparent 50%),
+    radial-gradient(at 78% 88%, rgba(63, 117, 124, 0.42) 0px, transparent 55%),
+    radial-gradient(at 22% 92%, rgba(10, 44, 52, 0.65) 0px, transparent 50%);
+}
+
+/* Grain overlay */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.045;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* Vetro */
+.glass {
+  background: rgba(247, 243, 234, 0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(247, 243, 234, 0.12);
+}
+.glass-dark {
+  background: rgba(7, 30, 36, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(7, 30, 36, 0.08);
+}
+
+/* Linea decorativa oro */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+}
+
+/* Eyebrow / occhiello */
+.eyebrow {
+  font-family: var(--font-sans), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+/* Onde animate soft */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes marquee-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.06); }
+}
+
+.animate-float-slow { animation: float-slow 7s var(--ease-smooth) infinite; }
+.animate-spin-slow { animation: spin-slow 26s linear infinite; }
+.animate-pulse-soft { animation: pulse-soft 3.2s ease-in-out infinite; }
+
+/* Scrollbar discreta */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-sand-200); }
+::-webkit-scrollbar-thumb { background: var(--color-sea-400); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-sea-600); }
+
+/* Zoom foto hover */
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform 0.9s var(--ease-out-expo); }
+.img-zoom:hover img { transform: scale(1.06); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
